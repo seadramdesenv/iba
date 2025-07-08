@@ -1,0 +1,1 @@
+/Users/eduardonogueira/entechnology/IbaMemberApp/build/app/intermediates/cxx/RelWithDebInfo/2g5kn5e3/obj/arm64-v8a

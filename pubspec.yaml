@@ -1,0 +1,53 @@
+name: iba_member_app
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get_it: ^8.0.0
+  dio: ^5.7.0
+  loading_indicator: ^3.1.1
+  infinite_scroll_pagination: ^4.0.0
+  shared_preferences: ^2.3.2
+  local_auth: ^2.3.0
+  intl: ^0.20.2
+  image_picker: ^1.1.2
+  flutter_holo_date_picker: ^2.0.0
+  flutter_launcher_icons: ^0.14.2
+  dart_jsonwebtoken: ^2.14.2
+  mask_text_input_formatter: ^2.9.0
+  signature: ^6.0.0
+  syncfusion_flutter_pdfviewer: ^29.2.4
+  path_provider: ^2.1.5
+  share_plus: ^11.0.0
+  uuid: ^4.5.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/logo.jpg"
+  android_icon_size: 48
+  ios_icon_size: 32
+  remove_alpha: true
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  assets:
+    - lib/assets/logo.jpg
+    - lib/assets/logo-letra.jpg
+  uses-material-design: true
