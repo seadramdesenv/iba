@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,45 +14,50 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
   @override
   void initState() {
     super.initState();
-    _checkBiometricsAndTokens();
+    _checkAuthentication();
   }
 
-  Future<void> _checkBiometricsAndTokens() async {
+  Future<void> _checkAuthentication() async {
     final prefs = await SharedPreferences.getInstance();
-    final accessToken = prefs.getString('auth_token');
+    final hasToken = prefs.getString('auth_token') != null;
 
-    if (accessToken != null) {
-      final isAuthenticated = await _authenticateDeviceCredentials();
-
+    if (hasToken) {
+      // Se tem token, tenta autenticar com biometria
+      final isAuthenticated = await _authenticateWithBiometrics();
       if (isAuthenticated) {
         Navigator.pushReplacementNamed(context, '/default');
       } else {
+        // Se a biometria falhar ou for cancelada, vai para o login
         Navigator.pushReplacementNamed(context, '/login');
       }
     } else {
-      // Se não tiver token, vai para o login
+      // Se não tiver token, vai direto para o login
       Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
-  Future<bool> _authenticateDeviceCredentials() async {
+  Future<bool> _authenticateWithBiometrics() async {
     try {
       final canCheckBiometrics = await auth.canCheckBiometrics;
-      final isDeviceSupported = await auth.isDeviceSupported();
-
-      if (!canCheckBiometrics && !isDeviceSupported) {
-        print("Biometria ou senha não disponível no dispositivo.");
+      if (!canCheckBiometrics) {
+        print("Biometria não disponível no dispositivo.");
         return false;
       }
 
       return await auth.authenticate(
-        localizedReason: 'Confirme sua identidade para continuar',
+        localizedReason: 'Use sua digital para fazer login',
         options: const AuthenticationOptions(
-          biometricOnly: false,
+          // Força o uso apenas da biometria (digital ou facial)
+          biometricOnly: true,
+          // Mantém o diálogo de autenticação ativo
           stickyAuth: true,
+          // Usa os diálogos de erro do sistema
           useErrorDialogs: true,
         ),
       );
+    } on PlatformException catch (e) {
+      print("Erro de plataforma durante a autenticação: $e");
+      return false;
     } catch (e) {
       print("Erro durante a autenticação: $e");
       return false;
