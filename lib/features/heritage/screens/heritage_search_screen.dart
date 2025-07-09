@@ -35,7 +35,10 @@ class _HeritageSearchScreenState extends State<HeritageSearchScreen> {
     _fetchHeritage();
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 100 && !_isLoading && _hasMore) {
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 100 &&
+          !_isLoading &&
+          _hasMore) {
         _fetchHeritage();
       }
     });
@@ -160,7 +163,10 @@ class _HeritageSearchScreenState extends State<HeritageSearchScreen> {
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    value: _statusOptions.any((status) => status["value"] == _statusController.text) ? _statusController.text : null,
+                    value: _statusOptions.any((status) =>
+                            status["value"] == _statusController.text)
+                        ? _statusController.text
+                        : null,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Status",
@@ -200,14 +206,16 @@ class _HeritageSearchScreenState extends State<HeritageSearchScreen> {
                           final name = _nameController.text;
                           final status = _statusController.text;
 
-                          var insert = HeritageInsert(name: name, idStatusHeritage: status);
+                          var insert = HeritageInsert(
+                              name: name, idStatusHeritage: status);
 
                           try {
                             var id = await controller.insertHeritage(insert);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HeritageViewScreen(id: id),
+                                builder: (context) =>
+                                    HeritageViewScreen(id: id),
                               ),
                             );
                           } catch (e) {
@@ -372,7 +380,8 @@ class _HeritageSearchScreenState extends State<HeritageSearchScreen> {
               decoration: InputDecoration(
                 hintText: 'Buscar item...',
                 prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               ),
             ),
           ),
@@ -387,7 +396,8 @@ class _HeritageSearchScreenState extends State<HeritageSearchScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HeritageViewScreen(id: _heritage[index].id),
+                          builder: (context) =>
+                              HeritageViewScreen(id: _heritage[index].id),
                         ),
                       );
                     },

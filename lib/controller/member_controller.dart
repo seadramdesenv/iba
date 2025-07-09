@@ -10,8 +10,8 @@ class MemberController {
     return await api.getMembers(id);
   }
 
-  Future<void> InsertMember(Member request) async {
-    await api.InsertMember(request);
+  Future<void> insertMember(Member request) async {
+    await api.insertMember(request);
   }
 
   Future<void> updateMember(Member request) async {

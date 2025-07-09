@@ -8,7 +8,6 @@ class DefaultWidget extends StatefulWidget {
 
   @override
   State<DefaultWidget> createState() => _DefaultWidgetState();
-
 }
 
 class _DefaultWidgetState extends State<DefaultWidget> {

@@ -37,7 +37,8 @@ class AuthService {
 
         final nowUtc = DateTime.now().toUtc();
         final expiryUtc = nowUtc.add(const Duration(seconds: 90));
-        await prefs.setString('token_expiry_datetime', expiryUtc.toIso8601String());
+        await prefs.setString(
+            'token_expiry_datetime', expiryUtc.toIso8601String());
 
         // Timer.periodic(const Duration(minutes: 5), (Timer timer) async {
         //   await refreshTokenApi();

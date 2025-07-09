@@ -57,7 +57,7 @@ class _MovieDetailPageState extends State<MemberDetailPage> {
 
     if (updatedMember.id == "") {
       try {
-        await controller.InsertMember(updatedMember);
+        await controller.insertMember(updatedMember);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Membro inserido com sucesso!')),
         );
@@ -146,9 +146,11 @@ class _MovieDetailPageState extends State<MemberDetailPage> {
             Navigator.pop(context, true);
           },
         ),
-        title: Text(widget.member.id == '' ? 'Inserir Membro' : 'Detalhes do Membro'),
+        title: Text(
+            widget.member.id == '' ? 'Inserir Membro' : 'Detalhes do Membro'),
       ),
-      backgroundColor: Color.alphaBlend(Colors.black12, Theme.of(context).scaffoldBackgroundColor),
+      backgroundColor: Color.alphaBlend(
+          Colors.black12, Theme.of(context).scaffoldBackgroundColor),
       body: SingleChildScrollView(
         child: Column(
           children: [

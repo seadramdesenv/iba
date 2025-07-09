@@ -17,12 +17,18 @@ void setupGetIt() {
   getIt.registerSingleton<Dio>(Dio(BaseOptions(baseUrl: Globals.apiBaseUrl)));
   getIt.registerSingleton<DioClient>(DioClient(instance: getIt<Dio>()));
 
-  getIt.registerLazySingleton<MemberApi>(() => MemberApi(dioClient: getIt<DioClient>()));
-  getIt.registerLazySingleton<DonateApi>(() => DonateApi(dioClient: getIt<DioClient>()));
-  getIt.registerLazySingleton<MaritalStatusService>(() => MaritalStatusService(dioClient: getIt<DioClient>()));
-  getIt.registerLazySingleton<StatusHeritageService>(() => StatusHeritageService(dioClient: getIt<DioClient>()));
-  getIt.registerLazySingleton<AddressService>(() => AddressService(dioClient: getIt<DioClient>()));
-  getIt.registerLazySingleton<HeritageApi>(() => HeritageApi(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<MemberApi>(
+      () => MemberApi(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<DonateApi>(
+      () => DonateApi(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<MaritalStatusService>(
+      () => MaritalStatusService(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<StatusHeritageService>(
+      () => StatusHeritageService(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<AddressService>(
+      () => AddressService(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<HeritageApi>(
+      () => HeritageApi(dioClient: getIt<DioClient>()));
   getIt.registerLazySingleton<DonateController>(() => DonateController());
   getIt.registerLazySingleton<HeritageController>(() => HeritageController());
 }

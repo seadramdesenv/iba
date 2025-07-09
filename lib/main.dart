@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:iba_member_app/assets/widgets/auth_check_screen.dart';
-import 'package:iba_member_app/features/login/view/login_widget.dart';
-import 'package:iba_member_app/pages/default/default_widget.dart';
+import 'package:iba_member_app/core/routers/app_router.dart';
+import 'package:iba_member_app/core/theme/app_theme.dart';
 import 'package:iba_member_app/service_locator.dart';
 
 Future<void> main() async {
@@ -31,27 +30,9 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'),
         Locale('pt', 'BR'),
       ],
-      theme: ThemeData(
-          scaffoldBackgroundColor: Colors.black45,
-          colorScheme: const ColorScheme.dark(
-            primary: Colors.yellow,
-            secondary: Colors.white,
-            background: Colors.black87,
-          ),
-          useMaterial3: true,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.black87)),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Scaffold(
-              body: AuthCheckScreen(),
-            ),
-        '/login': (context) => const Scaffold(
-              body: LoginWidget(),
-            ),
-        '/default': (context) => const Scaffold(
-              body: DefaultWidget(),
-            ),
-      },
+      theme: AppTheme.themeData,
+      initialRoute: AppRouter.authCheck,
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }
